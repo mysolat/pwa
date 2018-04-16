@@ -2,36 +2,37 @@
   <div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <a class="navbar-brand" href="#">MySolat</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <button aria-controls="navdrawerRight" aria-expanded="false" aria-label="Toggle Navdrawer" class="navbar-toggler ml-auto" data-target="#navdrawerRight" data-toggle="navdrawer">
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <router-link class="nav-link" to="/" @click.native="hideMenu">Home</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" to="/locations" @click.native="hideMenu">Locations</router-link>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Dropdown
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-          </li>
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-      </div>
     </nav>
+
+    <aside aria-hidden="true" class="navdrawer navdrawer-right navdrawer-default" id="navdrawerRight" tabindex="-1">
+      <div class="navdrawer-content">
+        <div class="navdrawer-header">
+          <a class="navbar-brand px-0" href="#">Navdrawer header</a>
+        </div>
+        <nav class="navdrawer-nav">
+          <a class="nav-item nav-link active" href="#">Active</a>
+          <a class="nav-item nav-link disabled" href="#">Disabled</a>
+          <a class="nav-item nav-link" href="#">Link</a>
+        </nav>
+        <div class="navdrawer-divider"></div>
+        <p class="navdrawer-subheader">Navdrawer subheader</p>
+        <ul class="navdrawer-nav">
+
+          <li class="nav-item" v-for="zone in zones">
+            <a class="nav-link active" href="#"  v-on:click="setZone(zone.zone)">
+              <i class="material-icons mr-3">alarm_on</i>
+              {{zone.locations[0]}}
+            </a>
+          </li>
+        
+        </ul>
+      </div>
+    </aside>
+
     <main class="container-fluid">
       <div class="page-content">
         <router-view></router-view>
@@ -41,13 +42,37 @@
 </template>
 
 <script>
-  require('daemonite-material')
   export default {
-    name: 'app'
+    name: 'app',
+    mounted () {
+      this.init()
+    },
+    methods: {
+      init: function () {
+        this.$parent.setCookie('zone', this.zone)
+        this.fetchZones()
+        // daily.fetchData('', '', '', this.zone)
+        // monthly.fetchData(this.year, this.month, this.zone)
+      },
+
+      fetchZones: function () {
+        var url = this.endpoint + '/zones.json'
+        this.$http.get(url).then(function (response) { this.zones = response.data })
+      },
+
+      setZone: function (kod) {
+        this.zone = kod
+        this.search = ''
+        this.init()
+      },
+
+      openSetting: function () {
+      }
+    }
   }
 </script>
 
-<style>
+<style lang="scss">
   @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
-  @import "~daemonite-material/css/material.css";
+  @import "~daemonite-material/assets/scss/material.scss";
 </style>
