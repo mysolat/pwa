@@ -1,35 +1,24 @@
 <template>
   <div>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-light bg-light">
       <a class="navbar-brand" href="#">MySolat</a>
-      <button aria-controls="navdrawerRight" aria-expanded="false" aria-label="Toggle Navdrawer" class="navbar-toggler ml-auto" data-target="#navdrawerRight" data-toggle="navdrawer">
+      <button aria-controls="navdrawerRight" aria-expanded="false" aria-label="Toggle Navdrawer" class="navbar-toggler ml-auto" data-target="#navdrawer-right" data-toggle="navdrawer">
         <span class="navbar-toggler-icon"></span>
       </button>
 
     </nav>
 
-    <aside aria-hidden="true" class="navdrawer navdrawer-right navdrawer-default" id="navdrawerRight" tabindex="-1">
+    <aside aria-hidden="true" class="navdrawer navdrawer-right navdrawer-default" id="navdrawer-right" tabindex="-1">
       <div class="navdrawer-content">
         <div class="navdrawer-header">
-          <a class="navbar-brand px-0" href="#">Navdrawer header</a>
+          <a class="navbar-brand px-0" href="#">Settings</a>
         </div>
         <nav class="navdrawer-nav">
-          <a class="nav-item nav-link active" href="#">Active</a>
-          <a class="nav-item nav-link disabled" href="#">Disabled</a>
-          <a class="nav-item nav-link" href="#">Link</a>
+          <router-link class="nav-item nav-link active" to="/" @click.native="hideMenu">Home</router-link>
+          <router-link class="nav-item nav-link active" to="/locations" @click.native="hideMenu">Locations</router-link>
         </nav>
         <div class="navdrawer-divider"></div>
-        <p class="navdrawer-subheader">Navdrawer subheader</p>
-        <ul class="navdrawer-nav">
-
-          <li class="nav-item" v-for="zone in zones">
-            <a class="nav-link active" href="#"  v-on:click="setZone(zone.zone)">
-              <i class="material-icons mr-3">alarm_on</i>
-              {{zone.locations[0]}}
-            </a>
-          </li>
-        
-        </ul>
+        <p class="navdrawer-subheader">Other Settings</p>
       </div>
     </aside>
 
@@ -44,30 +33,40 @@
 <script>
   export default {
     name: 'app',
+    data () {
+      return global.data
+    },
     mounted () {
       this.init()
     },
     methods: {
       init: function () {
         this.$parent.setCookie('zone', this.zone)
-        this.fetchZones()
         // daily.fetchData('', '', '', this.zone)
         // monthly.fetchData(this.year, this.month, this.zone)
       },
 
-      fetchZones: function () {
-        var url = this.endpoint + '/zones.json'
-        this.$http.get(url).then(function (response) { this.zones = response.data })
+      highlightCurrent: function (time1, time2) {
+        var result = false
+        var first = global.moment(time1, 'HH:mm:ss A')
+        var second = global.moment(time2, 'HH:mm:ss A')
+        var timeNow = global.moment(this.time_now, 'HH:mm:ss A')
+        if (second == null) {
+          result = timeNow.isBefore(first)
+        } else {
+          result = timeNow.isBetween(first, second)
+        }
+        return result
       },
 
-      setZone: function (kod) {
-        this.zone = kod
-        this.search = ''
-        this.init()
+      updateCurrentTime: function () {
+        this.time_now = global.moment().format('LTS')
       },
 
-      openSetting: function () {
+      hideMenu: function () {
+        global.jQuery('#navdrawer-right').navdrawer('hide')
       }
+
     }
   }
 </script>

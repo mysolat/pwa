@@ -5,7 +5,11 @@ import App from './App'
 import router from './router'
 import VueResource from 'vue-resource'
 
-require('jquery')
+global.moment = require('moment')
+global.jQuery = require('jquery')
+var $ = global.jQuery
+window.$ = $
+
 require('popper.js')
 require('bootstrap')
 require('daemonite-material')
@@ -15,23 +19,18 @@ Vue.use(VueResource)
 
 var date = new Date()
 
-Vue.mixin({
-  data: function () {
-    return {
-      endpoint: 'https://api.solat.my',
-      zones: [],
-      zone: 'SGR03',
-      year: date.getFullYear(),
-      month: date.getMonth() + 1,
-      days: [],
-      today: [],
-      locations: [],
-      location: '',
-      time_now: '',
-      search: ''
-    }
-  }
-})
+global.data = {
+  endpoint: 'https://api.solat.my',
+  zones: [],
+  zone: 'SGR03',
+  year: date.getFullYear(),
+  month: date.getMonth() + 1,
+  daily: [],
+  monthly: [],
+  location: '',
+  time_now: '',
+  search: ''
+}
 
 /* eslint-disable no-new */
 new Vue({
@@ -40,6 +39,7 @@ new Vue({
   template: '<App/>',
   components: { App },
   methods: {
+
     setCookie: function (cname, cvalue) {
       document.cookie = cname + '=' + cvalue + ';'
     },
