@@ -10,7 +10,7 @@
       <div id='daily' style="padding-top: 55px;">
 
         <div class="text-center">
-          <h1 class="text-thin">{{daily.locations[0]}}</h1>
+          <h1 class="text-thin">{{location}}</h1>
         </div>
         <br>
         <div class="row">
@@ -66,7 +66,7 @@
       </div>
     </div>
 
-    <router-link class="nav-item nav-link active text-center " to="/timetables">Lihat Takwim</router-link>
+    <router-link class="nav-item nav-link active text-center " to="/timetables/">Lihat Takwim</router-link>
 
   </div>
 
@@ -87,7 +87,7 @@
         this.$http.get(url, {zone: zone}).then(function (response) {
           // console.log(response.data)
           this.daily = response.data
-          this.location = this.daily.locations[0]
+          this.location = this.daily.locations.join(', ')
         })
       }
     }
