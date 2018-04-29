@@ -10,17 +10,13 @@ global.jQuery = require('jquery')
 var $ = global.jQuery
 window.$ = $
 
-require('popper.js')
-require('bootstrap')
-require('daemonite-material')
-
 Vue.config.productionTip = false
 Vue.use(VueResource)
 
 var date = new Date()
 
 global.data = {
-  endpoint: 'https://api.solat.my',
+  endpoint: 'http://localhost:3000',
   zones: [],
   zone: 'SGR03',
   year: date.getFullYear(),

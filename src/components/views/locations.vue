@@ -4,7 +4,6 @@
   	<ul class="list-group list-group-flush">
   	 <li class="list-group-item" v-for="zone in zones">
         <a class="nav-link active" href="#"  v-on:click="setZone(zone.zone)">
-          <i class="material-icons mr-3">alarm_on</i>
           <span> {{zone.locations.join(', ')}} </span>
         </a>
       </li>

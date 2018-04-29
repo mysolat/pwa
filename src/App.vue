@@ -1,33 +1,29 @@
 <template>
-  <div>
-    <nav class="navbar navbar-light bg-light">
-      <a class="navbar-brand" href="#">MySolat</a>
-      <button aria-controls="navdrawerRight" aria-expanded="false" aria-label="Toggle Navdrawer" class="navbar-toggler ml-auto" data-target="#navdrawer-right" data-toggle="navdrawer">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
+  <main class="wrapper">
+    <nav class="navigation">
+      <section class="container"> 
+        <router-link class="navigation-title" to="/" >MySolat</router-link>
+        <ul class="navigation-list float-right">
+          <li class="navigation-item">
+            <router-link class="navigation-link" to="/locations" >Locations</router-link>
+          </li>
+        </ul>
+      </section>
     </nav>
 
-    <aside aria-hidden="true" class="navdrawer navdrawer-right navdrawer-default" id="navdrawer-right" tabindex="-1">
-      <div class="navdrawer-content">
-        <div class="navdrawer-header">
-          <a class="navbar-brand px-0" href="#">Settings</a>
-        </div>
-        <nav class="navdrawer-nav">
-          <router-link class="nav-item nav-link active" to="/" @click.native="hideMenu">Home</router-link>
-          <router-link class="nav-item nav-link active" to="/locations" @click.native="hideMenu">Locations</router-link>
-        </nav>
-        <div class="navdrawer-divider"></div>
-        <p class="navdrawer-subheader">Other Settings</p>
-      </div>
-    </aside>
-
-    <main class="container-fluid">
+    <section class="container is-fluid">
       <div class="page-content">
         <router-view></router-view>
       </div>
-    </main>
-  </div>
+    </section>
+
+    <footer class="footer">
+      <section class="container">
+        <p>Designed with ♥ by <a target="_blank" href="http://khairi.me" title="Mohd khairi">mkhairi</a></p>
+      </section>
+    </footer>
+
+  </main>
 </template>
 
 <script>
@@ -64,7 +60,7 @@
       },
 
       hideMenu: function () {
-        global.jQuery('#navdrawer-right').navdrawer('hide')
+        // global.jQuery('#navdrawer-right').navdrawer('hide')
       }
 
     }
@@ -72,6 +68,6 @@
 </script>
 
 <style lang="scss">
-  @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
-  @import "~daemonite-material/assets/scss/material.scss";
+  @import "~milligram/dist/milligram";
+  @import "assets/stylesheets/main";
 </style>

@@ -1,75 +1,64 @@
 <template>
-  <div>
-    
-    <h3>{{zone}} {{location}}</h3>
-    <h4>{{month}} / {{year}}</h4>
+  <div class="container">
+    <div id='daily' >
 
-
-    <div class="container">
+      <div class="text-center">
+        <h1 class="text-thin">{{zone}} {{location}}</h1>
+      </div>
       <br>
-      <div id='daily' style="padding-top: 55px;">
-
-        <div class="text-center">
-          <h1 class="text-thin">{{location}}</h1>
+      <div class="row">
+        <div class="column">
+          <h3 class="text-thin text-left">{{daily.timetables[0].tarikh}}</h3>
+        </div> 
+        <div class="column is-half">
+          <h1 class="clock text-center">{{time_now}}</h1>
         </div>
-        <br>
-        <div class="row">
-          <div class="col-3">
-            <h3 class="text-thin text-left">{{daily.timetables[0].tarikh}}</h3>
-          </div> 
-          <div class="col-6">
-            <h1 class="clock text-center">{{time_now}}</h1>
-          </div>
-          <div class="col-3">
-            <h3 class="text-thin text-right">{{daily.timetables[0].tarikh_hijrah}}</h3>
-          </div>
+        <div class="column">
+          <h3 class="text-thin text-right">{{daily.timetables[0].tarikh_hijrah}}</h3>
         </div>
-        <br>
-        <br>
-        <div class="row text-center lead">
-          <div class="col">
-            <i class="material-icons icon-lg">burst_mode</i>
-            <h3>Imsak</h3>
-            <h4 class="text-thin">{{daily.timetables[0].imsak}}</h4>
-          </div>
-          <div class="col">
-            <i class="material-icons icon-lg">compare</i>
-            <h3>Subuh</h3>
-            <h4 class="text-thin">{{daily.timetables[0].subuh}}</h4>
-          </div>
-          <div class="col">
-            <i class="material-icons icon-lg">filter_hdr</i>
-            <h3>Syuruk</h3>
-            <h4 class="text-thin">{{daily.timetables[0].syuruk}}</h4>
-          </div>
-          <div class="col">
-            <i class="material-icons icon-lg">wb_sunny</i>
-            <h3>Zohor</h3>
-            <h4 class="text-thin">{{daily.timetables[0].zohor}}</h4>
-          </div>
-          <div class="col">
-            <i class="material-icons icon-lg">wb_cloudy</i>
-            <h3>Asar</h3>
-            <h4 class="text-thin">{{daily.timetables[0].asar}}</h4>
-          </div>
-          <div class="col">
-            <i class="material-icons icon-lg">brightness_3</i>
-            <h3>Maghrib</h3>
-            <h4 class="text-thin">{{daily.timetables[0].maghrib}}</h4>
-          </div>
-          <div class="col">
-            <i class="material-icons icon-lg">brightness_4</i>
-            <h3>Isyak</h3>
-            <h4 class="text-thin">{{daily.timetables[0].isyak}}</h4>
-          </div>
+      </div>
+      <br>
+      <br>
+      <div class="row text-center lead">
+        <div class="column">
+          <img src="./../../assets/images/subuh.svg" width="96" height="96"/>
+          <h3>Imsak</h3>
+          <h4 class="text-thin">{{daily.timetables[0].imsak}}</h4>
+        </div>
+        <div class="column">
+          <img src="./../../assets/images/subuh.svg" width="96" height="96"/>
+          <h3>Subuh</h3>
+          <h4 class="text-thin">{{daily.timetables[0].subuh}}</h4>
+        </div>
+        <div class="column">
+          <img src="./../../assets/images/dhuha.svg" width="96" height="96"/>
+          <h3>Syuruk</h3>
+          <h4 class="text-thin">{{daily.timetables[0].syuruk}}</h4>
+        </div>
+        <div class="column">
+          <img src="./../../assets/images/zohor.svg" width="96" height="96"/>
+          <h3>Zohor</h3>
+          <h4 class="text-thin">{{daily.timetables[0].zohor}}</h4>
+        </div>
+        <div class="column">
+          <img src="./../../assets/images/asar.svg" width="96" height="96"/>
+          <h3>Asar</h3>
+          <h4 class="text-thin">{{daily.timetables[0].asar}}</h4>
+        </div>
+        <div class="column">
+          <img src="./../../assets/images/maghrib.svg" width="96" height="96"/>
+          <h3>Maghrib</h3>
+          <h4 class="text-thin">{{daily.timetables[0].maghrib}}</h4>
+        </div>
+        <div class="column">
+          <img src="./../../assets/images/isyak.svg" width="96" height="96"/>
+          <h3>Isyak</h3>
+          <h4 class="text-thin">{{daily.timetables[0].isyak}}</h4>
         </div>
       </div>
     </div>
-
-    <router-link class="nav-item nav-link active text-center " to="/timetables/">Lihat Takwim</router-link>
-
+    <router-link class="nav-item nav-link active text-center" to="/timetables/">Lihat Takwim</router-link>
   </div>
-
 </template>
 <script>
   export default {
