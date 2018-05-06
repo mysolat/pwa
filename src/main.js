@@ -16,7 +16,7 @@ Vue.use(VueResource)
 var date = new Date()
 
 global.data = {
-  endpoint: 'http://api.solat.my',
+  endpoint: 'https://api.solat.my',
   zones: [],
   zone: 'SGR03',
   year: date.getFullYear(),
