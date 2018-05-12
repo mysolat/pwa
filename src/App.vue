@@ -1,17 +1,22 @@
 <template>
   <main class="wrapper">
-    <nav class="navigation">
-      <section class="container"> 
-        <router-link class="navigation-title" to="/" >MySolat</router-link>
-        <ul class="navigation-list float-right">
-          <li class="navigation-item">
-            <router-link class="navigation-link" to="/locations" >Locations</router-link>
-          </li>
-        </ul>
-      </section>
-    </nav>
 
-    <section class="container is-fluid">
+    <header class="navbar">
+      <nav class="navbar-section">
+        <a href="#" class="btn btn-link">Docs</a>
+        <a href="#" class="btn btn-link">Examples</a>
+      </nav>
+      <nav class="navbar-center">
+        <!--<img class="logo" src="./assets/images/logo.svg" alt=""> -->
+        <h3> MySolat </h3>
+      </nav>
+      <nav class="navbar-section">
+        <a href="#" class="btn btn-link">Twitter</a>
+        <router-link class="navigation-link" to="/locations" >Locations</router-link>
+      </nav>
+    </header>
+
+    <section class="container grid-lg">
       <div class="page-content">
         <router-view></router-view>
       </div>
@@ -68,6 +73,6 @@
 </script>
 
 <style lang="scss">
-  @import "~milligram/dist/milligram";
+  @import "~spectre.css/dist/spectre";
   @import "assets/stylesheets/main";
 </style>

@@ -19,7 +19,7 @@
       </div>
       <br>
       <br>
-      <div class="row text-center lead">
+      <div class="columns text-center lead">
         <div class="column">
           <img src="./../../assets/images/subuh.svg" width="96" height="96"/>
           <h3>Imsak</h3>
@@ -57,7 +57,7 @@
         </div>
       </div>
     </div>
-    <router-link class="nav-item nav-link active text-center" to="/timetables/">Lihat Takwim</router-link>
+    <router-link class="text-center btn" to="/timetables/">Lihat Takwim</router-link>
   </div>
 </template>
 <script>
@@ -71,7 +71,7 @@
     },
     methods: {
       fetchData: function (zone) {
-        var url = this.endpoint + `/zones/${zone}.json`
+        var url = this.endpoint + `/zon/${zone}.json`
         console.log(url)
         this.$http.get(url, {zone: zone}).then(function (response) {
           // console.log(response.data)

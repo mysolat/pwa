@@ -44,7 +44,7 @@
     methods: {
       fetchData: function (yy, mm) {
         this.month = mm
-        var url = this.endpoint + `/year/${this.year}/month/${this.month}/zones/${this.zone}.json`
+        var url = this.endpoint + `/year/${this.year}/month/${this.month}/zon/${this.zone}.json`
         this.$http.get(url).then(function (response) {
           this.monthly = response.data
         })
